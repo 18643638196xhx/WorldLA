@@ -1,0 +1,16 @@
+policy_name: worldla_policy
+train_config_name: worldla_pi05
+model_name: worldla
+model_dir: null
+task_name: null
+task_config: null
+ckpt_setting: worldla_full
+seed: 0
+inference_seed: 20260901
+instruction_type: seen
+old_plan_weight: 0.75
+pi0_step: 10
+eval_episode_num: 100
+record_policy_debug: false
+eval_video_log: false
+fast_eval_mode: true
