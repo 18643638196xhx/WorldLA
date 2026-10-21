@@ -1,10 +1,18 @@
 # Cached-teacher training
 
+For the released 20K cache, fixed Hub revision, official-data conversion,
+initialization checks, and complete training/export commands, start with
+[README sections 4–8](../README.md#4-download-the-training-bundle) or the
+[Chinese workflow](../README_zh.md#4-下载并校验训练路由缓存).
+The Git repository's `configs/` files are generic templates; the released
+bundle supplies dataset-specific YAMLs using documented environment variables.
+
 Install the pinned runtime requirements, then `requirements-train.txt` and
 the project in editable mode. Use a separate environment. The tested LeRobot
 API is v2.1-era; a current unrelated LeRobot release is not interchangeable.
 
-Required inputs (not bundled):
+Required inputs (not stored in Git; routes and normalization are available on
+[Hugging Face](https://huggingface.co/xhx0327/WorldLA-100k-decay-full/tree/main/training/stage_routes_20k)):
 
 1. A LeRobot v2.1 robot dataset with three image keys
    `observation.images.cam_high`, `cam_left_wrist`, `cam_right_wrist`,
