@@ -16,6 +16,9 @@ def main():
     missing=expected-names
     if missing:
         raise RuntimeError(f'Modules missing from wheel: {sorted(missing)}')
+    unexpected={name for name in names if name.startswith(('openpi/','openpi_client/'))}
+    if unexpected:
+        raise RuntimeError(f'Legacy namespace leaked into wheel: {sorted(unexpected)}')
     print(f'All {len(expected)} source modules are present in the wheel.')
 
 

@@ -6,11 +6,17 @@ with time-aligned old-tail/new-head plan fusion.
 [中文说明](README_zh.md) · [Training and data](docs/TRAINING.md) ·
 [Evaluation](docs/EVALUATION.md) · [Reproducibility](docs/REPRODUCIBILITY.md)
 
-Validation: **30 CPU tests passed**; the independently installed package exactly
-matches saved reference actions/routes/plans on four real fixed observations.
+Validation after the 0.2 namespace migration: **32 CPU tests passed**; the full
+89-leaf parameter layout matches the pre-rename model. Both checkpoint formats
+exactly match their own saved reference actions/routes/plans on four real
+fixed observations.
 Both full-checkpoint formats also completed a real `press_stapler/demo_clean`
 closed-loop smoke test (3/3 successes each, same seeds). This is not a new
-training or 50-task benchmark. [Validation details](docs/VALIDATION.md).
+50-task benchmark. Real-data four-GPU Router/action training also passed four
+updates per stage, including parameter-update/freeze and checkpoint-restore
+checks. All smoke training losses and validation metrics match the pre-rename
+run exactly; full-budget convergence remains unverified.
+[Validation details](docs/VALIDATION.md).
 
 ## What this repository contains
 
@@ -28,9 +34,12 @@ from caches or deployed inference. Four relative chunk stages are **not**
 automatically the physical phases approach/grasp/transport/place.
 
 This is a standalone source project: it does not import an old experiments
-checkout or depend on development-server paths. The tested OpenPI snapshot
-is embedded, with its license and provenance. Use a clean environment rather
-than installing over another active OpenPI environment.
+checkout or depend on development-server paths. Version 0.2 uses only the
+`worldla` Python namespace, including the backbone, training utilities and
+client. There is no `openpi` or `openpi_client` package dependency. Code derived
+from OpenPI retains its source attribution, license and file/class migration
+record. See [namespace migration](docs/NAMESPACE_MIGRATION.md). Use a clean
+environment rather than installing over another active robotics environment.
 
 ## Install
 

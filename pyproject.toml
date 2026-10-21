@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "worldla"
-version = "0.1.0"
+version = "0.2.0"
 description = "Stage-conditioned relation transfer and plan fusion for efficient robot control"
 requires-python = ">=3.11,<3.12"
 readme = "README.md"
@@ -31,13 +31,16 @@ dev = ["pytest>=8", "build>=1", "ruff>=0.8"]
 [project.scripts]
 worldla = "worldla.cli:main"
 
+[tool.setuptools]
+license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md", "licenses/*.txt", "licenses/provenance/*.json"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["worldla*", "openpi*", "openpi_client*"]
+include = ["worldla*"]
 namespaces = true
 
 [tool.setuptools.package-data]
-worldla = ["_provenance.json"]
+worldla = ["_provenance.json", "py.typed"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -46,4 +49,4 @@ pythonpath = ["src"]
 [tool.ruff]
 line-length = 110
 target-version = "py311"
-exclude = ["src/openpi", "src/openpi_client"]
+exclude = ["src/worldla/models/compat", "src/worldla/torch_backend/transformers_replace"]

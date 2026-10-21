@@ -3,7 +3,9 @@ import json
 import sys
 import numpy as np
 
-from worldla.integrations.robotwin import observation_from_robotwin,eval,reset_model
+from worldla.integrations.robotwin import observation_from_robotwin
+from worldla.integrations.robotwin import eval
+from worldla.integrations.robotwin import reset_model
 
 
 def test_robotwin_camera_mapping_and_chunk_execution():

@@ -19,8 +19,13 @@ size. LoRA folding can change results despite mathematical real-arithmetic
 equivalence. Do not assume unchanged task SR from fixed-input closeness.
 
 The independent project loads full release folders through its own packaged
-model, not by importing Python files from a downloaded checkpoint. Vendored
-model equations must match the snapshot recorded in `SOURCE_MANIFEST.json`.
+model, not by importing Python files from a downloaded checkpoint.
+`SOURCE_MANIFEST.json` records current source hashes. The original snapshot
+and old-to-new source/class mapping are retained in `licenses/provenance/`.
+WorldLA 0.2 changes module and class names while preserving parameter keys and
+model equations; renamed source files are not claimed to be byte-identical to
+the prior snapshot. Parameter-layout, fixed-input and training regression
+checks are recorded separately in `VALIDATION.md`.
 Run unit tests, build/install a wheel, test from a relocated directory, then
 compare fixed-input actions/routes and finally simulator rollouts before
 asserting full reproduction of reported results.

@@ -13,16 +13,16 @@ def main():
                         help='Batched NPZ: state [B,14], three cameras [B,3,H,W], prompt [B]')
     parser.add_argument('--reference',type=Path,required=True)
     parser.add_argument('--report',type=Path,required=True)
+    parser.add_argument('--require-exact',action='store_true',
+                        help='Require exact agreement with a reference from the same checkpoint format.')
     args=parser.parse_args()
     import jax
     import jax.numpy as jnp
-    import openpi
     import worldla
-    from openpi.models.model import Observation
-    from openpi.shared import nnx_utils
+    from worldla.models.interfaces import RobotObservation
+    from worldla.utils import nnx as nnx_utils
     from worldla.policy import WorldLAPolicy
     print(f'WorldLA package: {worldla.__file__}',flush=True)
-    print(f'OpenPI package: {openpi.__file__}',flush=True)
     policy=WorldLAPolicy(args.model_dir)
     normalized=[]
     sample=policy.sample
@@ -41,7 +41,7 @@ def main():
     for i,observation in enumerate(observations):
         actions.append(policy.infer(observation)['actions'])
         values=policy.inputs(dict(observation))
-        obs=Observation.from_dict(jax.tree.map(lambda x:jnp.asarray(x)[None],values))
+        obs=RobotObservation.from_dict(jax.tree.map(lambda x:jnp.asarray(x)[None],values))
         routes.append(np.asarray(route_fn(obs)[0]))
         print(f'Fixed-input sample {i+1}/{len(observations)} complete',flush=True)
     policy.reset()
@@ -55,13 +55,20 @@ def main():
             comparisons[key]={'exact':bool(np.array_equal(value,reference[key])),
                 'rmse':float(np.sqrt(np.mean(delta**2))),'max_abs':float(np.max(np.abs(delta)))}
     report={'worldla_package':str(Path(worldla.__file__).resolve()),
-            'openpi_package':str(Path(openpi.__file__).resolve()),'observations':len(observations),
+            'backend_package':str(Path(worldla.__file__).resolve()),'observations':len(observations),
             'comparisons':comparisons,'rollout_sr_test':False,
             'all_outputs_finite':all(np.isfinite(x).all() for x in actual.values())}
+    import sys
+    report['model_class']=type(policy.model).__module__+'.'+type(policy.model).__name__
+    report['backbone_class']=type(policy.model.base).__module__+'.'+type(policy.model.base).__name__
+    report['legacy_modules_loaded']=[name for name in sys.modules
+        if name=='openpi' or name.startswith('openpi.') or name=='openpi_client' or name.startswith('openpi_client.')]
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.report.write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2),flush=True)
-    if not policy.config['lora_merged'] and not all(x['exact'] for x in comparisons.values()):
+    if report['legacy_modules_loaded']:
+        raise RuntimeError('A legacy namespace was imported during independent WorldLA inference')
+    if (args.require_exact or not policy.config['lora_merged']) and not all(x['exact'] for x in comparisons.values()):
         raise RuntimeError('Original-graph inference differs from saved reference')
 
 

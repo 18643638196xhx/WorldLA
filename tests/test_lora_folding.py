@@ -1,6 +1,7 @@
 import numpy as np
 import pytest
-from worldla.checkpoints import fold_lora, validate_tree
+from worldla.checkpoints import fold_lora
+from worldla.checkpoints import validate_tree
 
 @pytest.mark.parametrize('kind', ['q_einsum', 'kv_einsum', 'attn_vec_einsum'])
 def test_attention_folding_matches_exact_source_equations(kind):

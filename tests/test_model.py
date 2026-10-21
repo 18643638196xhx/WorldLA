@@ -3,11 +3,13 @@ import pytest
 
 import flax.nnx as nnx
 import jax.numpy as jnp
-from worldla.model import StageRelationRouter,StageMessageAdapter,message_source_stage_ids
+from worldla.models.worldla import ContextAdaptiveStageRouter
+from worldla.models.worldla import StageMessageInjector
+from worldla.models.worldla import message_source_stage_ids
 
 
 def test_router_masking_and_normalization():
-    model=StageRelationRouter(prefix_dim=8,hidden_dim=4,num_route_tokens=6,num_stages=4,
+    model=ContextAdaptiveStageRouter(prefix_dim=8,hidden_dim=4,num_route_tokens=6,num_stages=4,
                               position_only=False,rngs=nnx.Rngs(0))
     mask=jnp.array([[True,True,True,True,True,False,True,True]])
     route=np.asarray(model(jnp.ones((1,8,8)),mask))
@@ -17,7 +19,7 @@ def test_router_masking_and_normalization():
 
 
 def test_zero_initialized_adapter_is_identity():
-    model=StageMessageAdapter(prefix_dim=8,suffix_dim=4,bottleneck_dim=2,num_stages=4,rngs=nnx.Rngs(1))
+    model=StageMessageInjector(prefix_dim=8,suffix_dim=4,bottleneck_dim=2,num_stages=4,rngs=nnx.Rngs(1))
     suffix=jnp.arange(200,dtype=jnp.float32).reshape(1,50,4)
     result=model(suffix,jnp.ones((1,6,8)),jnp.ones((1,4,6))/6)
     np.testing.assert_array_equal(result,suffix)
@@ -33,8 +35,8 @@ def test_zero_initialized_adapter_is_identity():
 ])
 def test_trainable_filters(stage,condition,expected):
     from flax import traverse_util
-    from openpi.shared import nnx_utils
-    from worldla.training import training_filter
+    from worldla.utils import nnx as nnx_utils
+    from worldla.training.runner import training_filter
     class Model(nnx.Module):
         def __init__(self):
             self.base=nnx.Dict(lora_a=nnx.Param(jnp.ones(1)),weight=nnx.Param(jnp.ones(1)))

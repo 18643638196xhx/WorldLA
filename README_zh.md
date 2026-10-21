@@ -3,19 +3,25 @@
 本项目把 WorldLA 的模型、缓存教师监督训练、推理和重规划从历史实验目录中整理出来。
 不依赖旧服务器的绝对路径，不修改原训练工程，也不会自动启动训练、评测或上传。
 
-已通过 30 项 CPU 测试；独立安装后的四个真实观测推理与原部署参考输出完全一致。
+0.2版命名迁移后已通过 32 项 CPU 测试，重命名前后的89项参数路径及形状一致。
+两种格式的权重在四个真实观测上的推理结果，分别与其改名前参考输出完全一致。
 未融合版和融合版均已完成 `press_stapler/demo_clean` 的真实闭环短评测，同样三个
 种子均为 3/3 成功。这不是重新训练或完整50任务评测，详见 [验证范围](docs/VALIDATION.md)。
+此外，独立安装包已通过真实数据上的四卡训练短测：Router 和动作阶段各4步，
+包含非零梯度、参数更新、Router 冻结以及检查点保存/恢复验证；损失和验证指标也与
+改名前的短测完全一致，尚未重新验证完整预算收敛。
 
 ## 项目结构
 
-- `src/worldla/model.py`：阶段路由器、视觉消息 Adapter、门控及动作生成。
+- `src/worldla/models/worldla.py`：`WorldLAModel`、阶段路由器、视觉消息与门控。
+- `src/worldla/models/backbone.py`：`WorldLABackbone`，保留现有 π0.5 参数结构。
+- `src/worldla/models/configuration.py`：`WorldLAConfig`。
 - `src/worldla/policy.py`：完整检查点加载、输入输出变换和推理接口。
 - `src/worldla/replanning.py`：旧计划尾部与新计划头部的时间对齐融合。
-- `src/worldla/training.py`：两阶段训练；先训练路由器，再冻结路由器训练动作侧。
+- `src/worldla/training/runner.py`：两阶段训练；先训练路由器，再冻结路由器训练动作侧。
 - `src/worldla/data/`：阶段路由缓存、教师空间映射和轨迹锚点构建。
 - `src/worldla/integrations/`：RoboTwin 策略适配器与外部评测器启动入口。
-- `src/openpi/`、`src/openpi_client/`：当前权重实际使用的底层代码快照。
+- `src/worldla/utils/`、`src/worldla/client/`：工具、检查点支持和客户端。
 - `configs/`：路由器 60k、动作模型 decay 100k 及部署示例配置。
 - `tests/`：接口、路由、重规划、配置和可移植性测试。
 
@@ -50,3 +56,7 @@ worldla --help
 6. 这次整理本身不等于重新完成训练、打榜或模型成功率验证。
 
 主项目代码采用 Apache-2.0。基座、tokenizer、教师权重、数据和仿真资源的许可需分别核对。
+
+0.2版已统一为 `worldla` 模块、文件和类命名，不再提供或依赖 `openpi`、
+`openpi_client` Python 包。原始版权、来源和修改映射仍保留，详见
+[命名迁移说明](docs/NAMESPACE_MIGRATION.md)。现有参数键和权重格式不改名。

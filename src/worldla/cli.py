@@ -7,7 +7,7 @@ import sys
 
 COMMANDS = {
     'infer': 'worldla.inference',
-    'train': 'worldla.training',
+    'train': 'worldla.training.runner',
     'build-routes': 'worldla.data.build_routes',
     'build-anchors': 'worldla.data.build_anchors',
     'export': 'worldla.export',

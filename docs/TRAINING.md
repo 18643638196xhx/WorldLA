@@ -72,3 +72,33 @@ The source also retains explicitly named teacher-ablation conditions. R2
 requires genuine cached WAM hidden features, not spatial route maps. R4 uses
 fresh sample/step-dependent stage derangements, not a learnable fixed shuffle.
 No matching-budget ablation results are fabricated in this source release.
+
+## Short end-to-end training check
+
+Before a full training run, use the installed package with real local data:
+
+```bash
+python scripts/smoke_training.py \
+  --lerobot-root data/lerobot --dataset-repo-id robotwin_demo_clean \
+  --asset-dir data/assets --asset-id robotwin_demo_clean \
+  --route-manifest data/stage_routes/stage_route_manifest.jsonl \
+  --init-params data/pi05_base/params \
+  --tokenizer-path data/paligemma_tokenizer.model \
+  --gpus 0,1,2,3 --batch-size 4 --steps 4 \
+  --output outputs/train_smoke_01
+```
+
+The helper refuses existing output directories and GPUs with 512 MiB or more
+already in use. It runs Router pretraining, restores that Router for the action
+stage, saves an intermediate and a final action checkpoint, and restores the
+saved parameters on CPU. Verification requires finite losses/nonzero gradients,
+updated LoRA/adapter leaves, an unchanged pretrained Router during action
+training, and no dense-base leaves in the adaptation checkpoint. Sampling and
+validation use real dataset records, not synthetic model inputs; validation is
+limited to one batch per stage for this smoke test.
+
+All new files, dataset/JAX caches, logs, and small test checkpoints are written
+under the requested output. The first run can spend time and disk space building
+the local dataset cache. The helper is offline and does not download data,
+overwrite existing checkpoints, publish artifacts, or establish full-budget
+training convergence.

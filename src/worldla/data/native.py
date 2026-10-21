@@ -4,7 +4,7 @@ from pathlib import Path
 def create_native_dataset(config, lerobot_root: Path):
     import os
 
-    from openpi.training import data_loader
+    from worldla.training import datasets as data_loader
 
     os.environ["LEROBOT_DATA_ROOT"] = str(lerobot_root.expanduser().resolve())
     data_config = config.data.create(config.assets_dirs, config.model)
@@ -16,7 +16,7 @@ def create_native_dataset(config, lerobot_root: Path):
 
 def create_batch_loader(dataset, *, batch_size: int, shuffle: bool, seed: int):
     import torch
-    from openpi.training.data_loader import _collate_fn
+    from worldla.training.datasets import _collate_fn
 
     generator = torch.Generator()
     generator.manual_seed(int(seed))

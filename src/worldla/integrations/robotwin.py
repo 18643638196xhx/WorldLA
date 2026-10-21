@@ -4,11 +4,11 @@ import numpy as np
 
 def get_model(usr_args):
     from worldla.policy import WorldLAPolicy
-    import openpi
-    import worldla.model
+    import worldla
+    import worldla.models.worldla
     print(f'[worldla] Policy plug-in: {__file__}', flush=True)
-    print(f'[worldla] Model implementation: {worldla.model.__file__}', flush=True)
-    print(f'[worldla] OpenPI implementation: {openpi.__file__}', flush=True)
+    print(f'[worldla] Model implementation: {worldla.models.worldla.__file__}', flush=True)
+    print(f'[worldla] Package implementation: {worldla.__file__}', flush=True)
     model = WorldLAPolicy(usr_args['model_dir'],seed=int(usr_args.get('inference_seed',20260901)))
     print(f'[worldla] Full checkpoint loaded: {model.root}; lora_merged={model.config["lora_merged"]}', flush=True)
     weight = float(usr_args.get('old_plan_weight',model.config['deployment']['old_plan_weight']))

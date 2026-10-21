@@ -4,8 +4,10 @@ import sys
 import numpy as np
 import pytest
 
-from worldla.data.build_routes import four_stage_route,main as build
-from worldla.data.stage_routes import StageRouteTargetStore,randomize_stage_targets
+from worldla.data.build_routes import four_stage_route
+from worldla.data.build_routes import main as build
+from worldla.data.stage_routes import StageRouteTargetStore
+from worldla.data.stage_routes import randomize_stage_targets
 from worldla.data.spatial import to_pi_tokens
 
 

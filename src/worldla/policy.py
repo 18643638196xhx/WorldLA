@@ -23,15 +23,15 @@ def load_model(directory, *, dtype=None):
     import flax.nnx as nnx
     from flax import traverse_util
     import jax
-    from openpi.models import model as model_api
-    from openpi.models.pi0_config import Pi0Config
-    from worldla.model import StageRelationRouterPi
+    from worldla.models import interfaces as model_api
+    from worldla.models.configuration import WorldLAConfig
+    from worldla.models.worldla import WorldLAModel
 
     root = Path(directory).expanduser().resolve()
     cfg = json.loads((root / "config.json").read_text())
     validate_checkpoint_config(cfg)
-    model_cfg = Pi0Config(**cfg["base_model_config"])
-    abstract = nnx.eval_shape(lambda: StageRelationRouterPi(
+    model_cfg = WorldLAConfig(**cfg["base_model_config"])
+    abstract = nnx.eval_shape(lambda: WorldLAModel(
         model_cfg.create(jax.random.key(0)), **cfg["router_config"], rngs=nnx.Rngs(0)))
     graph, state = nnx.split(abstract)
     restored = model_api.restore_params(root / "params", dtype=dtype)
@@ -67,9 +67,10 @@ class LocalTokenizer:
 
 
 def make_transforms(directory):
-    from openpi import transforms as t
-    from openpi.policies.aloha_policy import AlohaInputs, AlohaOutputs
-    from openpi.shared import normalize
+    from worldla.data import transforms as t
+    from worldla.policies.aloha import AlohaInputs
+    from worldla.policies.aloha import AlohaOutputs
+    from worldla.utils import normalization as normalize
     root = Path(directory).expanduser().resolve()
     cfg = json.loads((root / "config.json").read_text())
     stats = normalize.load(root / "assets" / cfg["asset_id"])
@@ -94,7 +95,7 @@ class WorldLAPolicy:
     """
     def __init__(self, directory, *, seed=20260901):
         import jax
-        from openpi.shared import nnx_utils
+        from worldla.utils import nnx as nnx_utils
         self.root = Path(directory).expanduser().resolve()
         self.config = json.loads((self.root / "config.json").read_text())
         self.model = load_model(self.root)
@@ -112,9 +113,9 @@ class WorldLAPolicy:
         import jax
         import jax.numpy as jnp
         import numpy as np
-        from openpi.models.model import Observation
+        from worldla.models.interfaces import RobotObservation
         values = self.inputs(dict(observation))
-        obs = Observation.from_dict(jax.tree.map(lambda value: jnp.asarray(value)[None], values))
+        obs = RobotObservation.from_dict(jax.tree.map(lambda value: jnp.asarray(value)[None], values))
         self.rng, rng = jax.random.split(self.rng)
         actions = self.sample(rng, obs, num_steps=self.config["deployment"]["denoising_steps"])
         return self.outputs({"state": np.asarray(values["state"]), "actions": np.asarray(actions[0])})

@@ -5,9 +5,11 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
-from worldla.cli import load_yaml_arguments, main
+from worldla.cli import load_yaml_arguments
+from worldla.cli import main
 from worldla.replanning import blend_plan
-from worldla.checkpoints import assemble_original, validate_tree
+from worldla.checkpoints import assemble_original
+from worldla.checkpoints import validate_tree
 
 
 def test_package_help_is_lazy(capsys):
@@ -50,7 +52,7 @@ def test_assemble_preserves_lora_and_detects_collisions():
 
 
 def test_training_config_has_same_main_architecture():
-    from worldla.config import create_training_config
+    from worldla.training.presets import create_training_config
     cfg=create_training_config(SimpleNamespace(asset_dir='data/assets',asset_id='demo',
         dataset_repo_id='demo',lerobot_root='data/lerobot'))
     assert cfg.model.pi05
@@ -64,13 +66,13 @@ def test_training_config_has_same_main_architecture():
 
 def test_runtime_preserves_existing_credentials_and_data_cache(tmp_path,monkeypatch):
     from worldla.runtime import configure_runtime
-    from openpi.shared.runtime_dirs import configure_runtime_dirs
+    from worldla.utils.runtime_dirs import configure_runtime_dirs
     monkeypatch.setenv('HF_HOME',str(tmp_path/'user-hf'))
-    monkeypatch.setenv('OPENPI_DATA_HOME',str(tmp_path/'user-openpi'))
+    monkeypatch.setenv('WORLDLA_DATA_HOME',str(tmp_path/'user-openpi'))
     configure_runtime(tmp_path/'runtime')
     configure_runtime_dirs()
     assert Path(__import__('os').environ['HF_HOME'])==tmp_path/'user-hf'
-    assert Path(__import__('os').environ['OPENPI_DATA_HOME'])==tmp_path/'user-openpi'
+    assert Path(__import__('os').environ['WORLDLA_DATA_HOME'])==tmp_path/'user-openpi'
 
 
 def test_source_has_no_development_directory_imports():

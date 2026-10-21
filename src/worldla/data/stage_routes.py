@@ -6,10 +6,8 @@ from typing import Any
 
 import numpy as np
 
-from worldla.data.native import (
-    create_batch_loader,
-    create_native_dataset,
-)
+from worldla.data.native import create_batch_loader
+from worldla.data.native import create_native_dataset
 
 
 CONDITIONS = (
@@ -182,7 +180,7 @@ class StageRouteTargetStore:
         raise ValueError(f"Unknown condition: {condition}")
 
 
-class StageRouteOpenPiDataset:
+class StageRouteDataset:
     def __init__(self, transformed, store: StageRouteTargetStore, *, split: str, condition: str, feature_store=None):
         if condition not in CONDITIONS:
             raise ValueError(condition)
@@ -253,7 +251,7 @@ class FullEpisodeActionDataset:
 def split_batch(batch: dict[str, Any], *, sharding=None):
     import jax
     import jax.numpy as jnp
-    from openpi.models import model as model_api
+    from worldla.models import interfaces as model_api
 
     if sharding is None:
         batch = jax.tree.map(jnp.asarray, batch)
@@ -268,6 +266,6 @@ def split_batch(batch: dict[str, Any], *, sharding=None):
     episode_index = batch.pop("route_episode_index")
     actions = batch["actions"]
     return (
-        model_api.Observation.from_dict(batch), actions, route, position_mean,
+        model_api.RobotObservation.from_dict(batch), actions, route, position_mean,
         global_index, episode_index,
     )

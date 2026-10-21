@@ -1,0 +1,562 @@
+{
+  "schema": "worldla_namespace_migration_v1",
+  "class_renames": {
+    "StageRelationRouterPi": "WorldLAModel",
+    "StageRelationRouter": "ContextAdaptiveStageRouter",
+    "StageMessageAdapter": "StageMessageInjector",
+    "StageRouteOpenPiDataset": "StageRouteDataset",
+    "Pi0": "WorldLABackbone",
+    "Pi0Config": "WorldLAConfig",
+    "Pi0FAST": "WorldLATokenBackbone",
+    "Pi0FASTConfig": "WorldLATokenConfig",
+    "PI0Pytorch": "WorldLATorchBackbone",
+    "BaseModel": "RobotModelBase",
+    "BaseModelConfig": "ModelConfigBase",
+    "Observation": "RobotObservation",
+    "Actions": "ActionSequence",
+    "ModelType": "ModelFamily",
+    "PaligemmaTokenizer": "PromptTokenizer",
+    "PaliGemmaWithExpertModel": "VisionLanguageActionTransformer",
+    "LoRAConfig": "LowRankConfig",
+    "TrainConfig": "TrainingConfig",
+    "AssetsConfig": "AssetConfig",
+    "DataConfig": "DatasetConfig",
+    "DataConfigFactory": "DatasetConfigFactory",
+    "FakeDataConfig": "SyntheticDatasetConfig",
+    "SimpleDataConfig": "SimpleDatasetConfig",
+    "LeRobotAlohaDataConfig": "AlohaDatasetConfig",
+    "LeRobotLiberoDataConfig": "LiberoDatasetConfig",
+    "LeRobotDROIDDataConfig": "DroidDatasetConfig",
+    "RLDSDroidDataConfig": "RldsDroidDatasetConfig",
+    "LRScheduleConfig": "LearningRateScheduleConfig",
+    "BasePolicy": "PolicyInterface",
+    "Policy": "BackbonePolicy"
+  },
+  "files": [
+    {
+      "before": "src/openpi/policies/policy.py",
+      "after": "src/worldla/policies/backbone_policy.py",
+      "before_sha256": "536db7354e555c8df3af7636e70d9d92197ff7f4ea0867986b6589c9ba2e4e76"
+    },
+    {
+      "before": "src/openpi/policies/aloha_policy.py",
+      "after": "src/worldla/policies/aloha.py",
+      "before_sha256": "928dcdc0ea5e8671a879b4327c5b6fd8c9a955cf0dd5dfe8a685eb6d249e0683"
+    },
+    {
+      "before": "src/openpi/policies/droid_policy.py",
+      "after": "src/worldla/policies/droid.py",
+      "before_sha256": "7d0893555964d485e231f70084125084a99495705ddd74b29461229d524fff26"
+    },
+    {
+      "before": "src/openpi/policies/policy_config.py",
+      "after": "src/worldla/policies/factory.py",
+      "before_sha256": "edd5fd69d9e4e474db6d3621bb52eddf2040d7499b00037b0a783001a144c27f"
+    },
+    {
+      "before": "src/openpi/policies/aloha_policy_multiview.py",
+      "after": "src/worldla/policies/aloha_multiview.py",
+      "before_sha256": "c56011e298a80b39320eef20c8ec58946d6295f85538d3d0373fe8379f450fa9"
+    },
+    {
+      "before": "src/openpi/policies/libero_policy.py",
+      "after": "src/worldla/policies/libero.py",
+      "before_sha256": "ad01e5be74516d9ec9aeb1f76294d5c9f7f7179a60f1f7fbbb35e7646534f81a"
+    },
+    {
+      "before": "src/openpi/transforms.py",
+      "after": "src/worldla/data/transforms.py",
+      "before_sha256": "724e1e0196adb196add3404ddfebe9aa440931c6da829d332ad348d35a6d6e70"
+    },
+    {
+      "before": "src/openpi/models/pi0_fast.py",
+      "after": "src/worldla/models/token_backbone.py",
+      "before_sha256": "627332a555046f2744ef144c45f8bd3361a9820cf68854a4528d0fdbba7e9aa3"
+    },
+    {
+      "before": "src/openpi/models/gemma.py",
+      "after": "src/worldla/models/language.py",
+      "before_sha256": "d87392bb587622a2340b8ae665298073433dbf358e5489af4dbb1dbceb658779"
+    },
+    {
+      "before": "src/openpi/models/pi0_multiview.py",
+      "after": "src/worldla/models/multiview_backbone.py",
+      "before_sha256": "7f75c051436cb0895f456054b02d0ea1e43765353f572f9168b1899575920a18"
+    },
+    {
+      "before": "src/openpi/models/utils/fsq_tokenizer.py",
+      "after": "src/worldla/models/utils/fsq_tokenizer.py",
+      "before_sha256": "88866638ee4775f46a222561a957bd35e20600fe38c5888b587016ad77b1065f"
+    },
+    {
+      "before": "src/openpi/models/__init__.py",
+      "after": "src/worldla/models/__init__.py",
+      "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "before": "src/openpi/models/vit.py",
+      "after": "src/worldla/models/vision_transformer.py",
+      "before_sha256": "d285d057636c3cba2d1fd3b37693b18075ad4b9c3b47bbde807c34c6c376ac93"
+    },
+    {
+      "before": "src/openpi/models/gemma_fast.py",
+      "after": "src/worldla/models/autoregressive.py",
+      "before_sha256": "563c6e1ffd8afa31c406bcb8894a605e87df88f6c075d398d97a57af6bc3aefa"
+    },
+    {
+      "before": "src/openpi/models/model.py",
+      "after": "src/worldla/models/interfaces.py",
+      "before_sha256": "215f0e737488dbd136a85eb7f6c6f007d1d4dc1f70b74b706a8ed556bd2c4d85"
+    },
+    {
+      "before": "src/openpi/models/siglip.py",
+      "after": "src/worldla/models/vision_encoder.py",
+      "before_sha256": "14b4df0be280d5769fb0dc31a40cde27525dbb1980cc998c28475d62fa3cad32"
+    },
+    {
+      "before": "src/openpi/models/lora.py",
+      "after": "src/worldla/models/low_rank.py",
+      "before_sha256": "ced28716950c34d84a1a6d0b03b1d9550000732721df884818080b6e78cb3289"
+    },
+    {
+      "before": "src/openpi/models/pi0_config_multiview.py",
+      "after": "src/worldla/models/multiview_configuration.py",
+      "before_sha256": "ed478ad4b845ae45af4a98522d6a6477a0b936de606199e8b8a5123c22f9da01"
+    },
+    {
+      "before": "src/openpi/models/model_multiview.py",
+      "after": "src/worldla/models/multiview_interfaces.py",
+      "before_sha256": "f82c90a1b8f0ed234e4cbd8537928effed31edd14980c4d5b91bdba0055cc3b0"
+    },
+    {
+      "before": "src/openpi/models/intent.py",
+      "after": "src/worldla/models/intention.py",
+      "before_sha256": "71b97c182c6ced2fdc5edecb6e1e8c821d4c06b5551db4cf1f6d3f42d1b8a797"
+    },
+    {
+      "before": "src/openpi/models/moe.py",
+      "after": "src/worldla/models/sparse_layers.py",
+      "before_sha256": "955cd1c3b16f61ee3dcbae0e636477ef9a2fc73952771bb8b68c04e1dd9b0280"
+    },
+    {
+      "before": "src/openpi/models/pi0.py",
+      "after": "src/worldla/models/backbone.py",
+      "before_sha256": "a3875caf18168aea742b8d3e6778ee0c1c4adc55d13dbe985f47356bcdc44b2f"
+    },
+    {
+      "before": "src/openpi/models/tokenizer.py",
+      "after": "src/worldla/models/tokenization.py",
+      "before_sha256": "965be8b3c393a6811875bbc32da9e01a5d01cc2f87802de801cf7293e049748c"
+    },
+    {
+      "before": "src/openpi/models/pi0_config.py",
+      "after": "src/worldla/models/configuration.py",
+      "before_sha256": "c086d06a433883342fd38b8c666e72bc1576239612358a3369fa3cf07529bcd2"
+    },
+    {
+      "before": "src/openpi/models_v1/pi0_fast.py",
+      "after": "src/worldla/models/compat/token_backbone.py",
+      "before_sha256": "627332a555046f2744ef144c45f8bd3361a9820cf68854a4528d0fdbba7e9aa3"
+    },
+    {
+      "before": "src/openpi/models_v1/gemma.py",
+      "after": "src/worldla/models/compat/language.py",
+      "before_sha256": "d87392bb587622a2340b8ae665298073433dbf358e5489af4dbb1dbceb658779"
+    },
+    {
+      "before": "src/openpi/models_v1/pi0_multiview.py",
+      "after": "src/worldla/models/compat/multiview_backbone.py",
+      "before_sha256": "6206436238b200cf4202583c1afb9fb6369563d4b104a4046fd81e33ddcde4da"
+    },
+    {
+      "before": "src/openpi/models_v1/utils/fsq_tokenizer.py",
+      "after": "src/worldla/models/compat/utils/fsq_tokenizer.py",
+      "before_sha256": "88866638ee4775f46a222561a957bd35e20600fe38c5888b587016ad77b1065f"
+    },
+    {
+      "before": "src/openpi/models_v1/__init__.py",
+      "after": "src/worldla/models/compat/__init__.py",
+      "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "before": "src/openpi/models_v1/vit.py",
+      "after": "src/worldla/models/compat/vision_transformer.py",
+      "before_sha256": "d285d057636c3cba2d1fd3b37693b18075ad4b9c3b47bbde807c34c6c376ac93"
+    },
+    {
+      "before": "src/openpi/models_v1/gemma_fast.py",
+      "after": "src/worldla/models/compat/autoregressive.py",
+      "before_sha256": "563c6e1ffd8afa31c406bcb8894a605e87df88f6c075d398d97a57af6bc3aefa"
+    },
+    {
+      "before": "src/openpi/models_v1/model.py",
+      "after": "src/worldla/models/compat/interfaces.py",
+      "before_sha256": "7430f4fe36c34c85084ff741dccbfe1e90bd5dbefd94e9e1653d2bbf749887e8"
+    },
+    {
+      "before": "src/openpi/models_v1/siglip.py",
+      "after": "src/worldla/models/compat/vision_encoder.py",
+      "before_sha256": "14b4df0be280d5769fb0dc31a40cde27525dbb1980cc998c28475d62fa3cad32"
+    },
+    {
+      "before": "src/openpi/models_v1/lora.py",
+      "after": "src/worldla/models/compat/low_rank.py",
+      "before_sha256": "ced28716950c34d84a1a6d0b03b1d9550000732721df884818080b6e78cb3289"
+    },
+    {
+      "before": "src/openpi/models_v1/pi0_config_multiview.py",
+      "after": "src/worldla/models/compat/multiview_configuration.py",
+      "before_sha256": "969c94513249e956867f14d8077cfa00f826b195236a1a56ac2b4a0afebab1eb"
+    },
+    {
+      "before": "src/openpi/models_v1/model_multiview.py",
+      "after": "src/worldla/models/compat/multiview_interfaces.py",
+      "before_sha256": "58f9ef7991978ffddf428c8168d4bdc2808af9aceb2ed099b66af081759ea06d"
+    },
+    {
+      "before": "src/openpi/models_v1/intent.py",
+      "after": "src/worldla/models/compat/intention.py",
+      "before_sha256": "eb9c5af34dec8c93b2e4b6f58f6e4497e7b89eaafd741eaedf819178fdc6cd0a"
+    },
+    {
+      "before": "src/openpi/models_v1/moe.py",
+      "after": "src/worldla/models/compat/sparse_layers.py",
+      "before_sha256": "a19c44e49b4b86b6bc788e375f881c754fdc202dc4550b64609661840c736774"
+    },
+    {
+      "before": "src/openpi/models_v1/pi0.py",
+      "after": "src/worldla/models/compat/backbone.py",
+      "before_sha256": "62d9e5af37da84e912541aabdca7ee6ece88b985c5fb31e7010a29fe06886e58"
+    },
+    {
+      "before": "src/openpi/models_v1/tokenizer.py",
+      "after": "src/worldla/models/compat/tokenization.py",
+      "before_sha256": "965be8b3c393a6811875bbc32da9e01a5d01cc2f87802de801cf7293e049748c"
+    },
+    {
+      "before": "src/openpi/models_v1/pi0_config.py",
+      "after": "src/worldla/models/compat/configuration.py",
+      "before_sha256": "e15d71586f1a561b35c5651227607613fb16d2df411f3708b1c9d36b02544285"
+    },
+    {
+      "before": "src/openpi/training/weight_loaders.py",
+      "after": "src/worldla/training/initialization.py",
+      "before_sha256": "253279ea167f56fa75317b63577b4c6add63b84f66a6f94e8697445b81489a8d"
+    },
+    {
+      "before": "src/openpi/training/misc/roboarena_config.py",
+      "after": "src/worldla/training/misc/roboarena_config.py",
+      "before_sha256": "914acdd74ccf90e6779c13a5093140595c7e4f687e9e0b167439446a81d74c01"
+    },
+    {
+      "before": "src/openpi/training/optimizer.py",
+      "after": "src/worldla/training/optimization.py",
+      "before_sha256": "cfb5d6f6aec61fbe961287b4015c652260628a0ed4682a0dbdc271b8e65431fa"
+    },
+    {
+      "before": "src/openpi/training/utils.py",
+      "after": "src/worldla/training/state.py",
+      "before_sha256": "b684e674343f86ef5e976f279a586d3fe2f885e901f396ac899ed136abc7eca6"
+    },
+    {
+      "before": "src/openpi/training/checkpoints.py",
+      "after": "src/worldla/training/checkpoints.py",
+      "before_sha256": "3b3a75e6b8b39606465e99b6a71a8517cc1d86804e37204df78cda4b706facec"
+    },
+    {
+      "before": "src/openpi/training/data_loader_multiview.py",
+      "after": "src/worldla/training/multiview_datasets.py",
+      "before_sha256": "82bb0fc016d4ba993330d78e97c90746b1870e1fd00787499ba7f9361188ba92"
+    },
+    {
+      "before": "src/openpi/training/data_loader.py",
+      "after": "src/worldla/training/datasets.py",
+      "before_sha256": "f960d38c654b9f670f4c39c2e3beb0ab76aaef24836f8e8b6b5984ebd8371c96"
+    },
+    {
+      "before": "src/openpi/training/droid_rlds_dataset.py",
+      "after": "src/worldla/training/droid_rlds_dataset.py",
+      "before_sha256": "9480e75ab2dbcc16d9219ed0f0982b057e5ba555b1b2b5abc692956568bdc722"
+    },
+    {
+      "before": "src/openpi/training/sharding.py",
+      "after": "src/worldla/training/distributed.py",
+      "before_sha256": "2384acbb4c33b1796294efdb088c6cd1a1f6100f505e636434e3c0c894f7def6"
+    },
+    {
+      "before": "src/openpi/training/config.py",
+      "after": "src/worldla/training/settings.py",
+      "before_sha256": "a30c80bdf0b6412b7fa222d1e47dd74195a8aa67b1573f6410132475bf30d039"
+    },
+    {
+      "before": "src/openpi/__init__.py",
+      "after": null,
+      "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "before": "src/openpi/serving/websocket_policy_server.py",
+      "after": "src/worldla/serving/websocket_policy_server.py",
+      "before_sha256": "3faea8f833a962f5d00583579f2eb6d6eccbbf4c886f8d613d621beddff0711e"
+    },
+    {
+      "before": "src/openpi/shared/nnx_utils.py",
+      "after": "src/worldla/utils/nnx.py",
+      "before_sha256": "4da7111ba3011c4d1c381c9ed17257771df6a50ed89182647c3fb6f79208005e"
+    },
+    {
+      "before": "src/openpi/shared/__init__.py",
+      "after": "src/worldla/utils/__init__.py",
+      "before_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "before": "src/openpi/shared/runtime_dirs.py",
+      "after": "src/worldla/utils/runtime_dirs.py",
+      "before_sha256": "16a8ba7d25de3ae360a294319fee82d85b1ff8d5ed1548b3b418ad1e64a9ce13"
+    },
+    {
+      "before": "src/openpi/shared/image_tools.py",
+      "after": "src/worldla/utils/images.py",
+      "before_sha256": "0f8fcb355288119e56acb56d550c1cc1f3a9edddceb0dc5b319f955943ef7767"
+    },
+    {
+      "before": "src/openpi/shared/download.py",
+      "after": "src/worldla/utils/downloads.py",
+      "before_sha256": "6f49ff4917fd180b650ab753132a78ff146f30aff8f9f8f7519505a359f62881"
+    },
+    {
+      "before": "src/openpi/shared/normalize.py",
+      "after": "src/worldla/utils/normalization.py",
+      "before_sha256": "6c2cea4946fb07e51801530400d2b2fd94730e195cd290d6b6960114eca9739d"
+    },
+    {
+      "before": "src/openpi/shared/array_typing.py",
+      "after": "src/worldla/utils/typing.py",
+      "before_sha256": "dec8f0375126ddae3382bc4c2917f85690d73ec3be7afdca9c2a33eb61c497c3"
+    },
+    {
+      "before": "src/openpi/shared/view_attention.py",
+      "after": "src/worldla/utils/view_routing.py",
+      "before_sha256": "aaffdf5e453b45bcd6ce6234bf7f0c96609017e5bd3811c239602c8688b464f9"
+    },
+    {
+      "before": "src/openpi/models_pytorch/gemma_pytorch.py",
+      "after": "src/worldla/torch_backend/transformer.py",
+      "before_sha256": "08fd8d750519f0fb44fc5173311e50a30f4c8f32c02e51244b4f8e47b32cd52f"
+    },
+    {
+      "before": "src/openpi/models_pytorch/preprocessing_pytorch.py",
+      "after": "src/worldla/torch_backend/preprocessing.py",
+      "before_sha256": "6a44e91be2d7a724c6140d2cc98ed0a631b8d38bbb29f63b380a0a19f903bbf6"
+    },
+    {
+      "before": "src/openpi/models_pytorch/transformers_replace/models/paligemma/modeling_paligemma.py",
+      "after": "src/worldla/torch_backend/transformers_replace/models/paligemma/modeling_paligemma.py",
+      "before_sha256": "c945d330b829264f927f3ee5339f977238631772de07a28e855e265bb85fd53c"
+    },
+    {
+      "before": "src/openpi/models_pytorch/transformers_replace/models/gemma/configuration_gemma.py",
+      "after": "src/worldla/torch_backend/transformers_replace/models/gemma/configuration_gemma.py",
+      "before_sha256": "26fd0d0f52730ab32b6f337eb73ae9a26cb71ae0915bc49eced1d0e2ed8d0ec6"
+    },
+    {
+      "before": "src/openpi/models_pytorch/transformers_replace/models/gemma/modeling_gemma.py",
+      "after": "src/worldla/torch_backend/transformers_replace/models/gemma/modeling_gemma.py",
+      "before_sha256": "17eeb54e277939e58cd6f8a92719a275e36baf0c9f463b2754227d42f87aedde"
+    },
+    {
+      "before": "src/openpi/models_pytorch/transformers_replace/models/siglip/check.py",
+      "after": "src/worldla/torch_backend/transformers_replace/models/siglip/check.py",
+      "before_sha256": "466e8eb7887ac5ccc98118a3169298d6ab65a284d834bae74751e3854dbc4245"
+    },
+    {
+      "before": "src/openpi/models_pytorch/transformers_replace/models/siglip/modeling_siglip.py",
+      "after": "src/worldla/torch_backend/transformers_replace/models/siglip/modeling_siglip.py",
+      "before_sha256": "ef2e99500f263fdd78db9d4d9a255e29d844eb92f53c25ad640f8056700ef84b"
+    },
+    {
+      "before": "src/openpi/models_pytorch/pi0_pytorch.py",
+      "after": "src/worldla/torch_backend/backbone.py",
+      "before_sha256": "0c7b9f1de02ed886da49035e3fa1b38efea46eb6209489cb4f594f777f97b70c"
+    },
+    {
+      "before": "src/openpi/conftest.py",
+      "after": "src/worldla/conftest.py",
+      "before_sha256": "626672e385fb276396c119e2220421065c58f8ec602401e8bf2ae509f9fffaf3"
+    },
+    {
+      "before": "src/worldla/inference.py",
+      "after": "src/worldla/inference.py",
+      "before_sha256": "3ba4f2c1515ab84b83f9463696f79f7642402a5a964f2d677b490583637186bc"
+    },
+    {
+      "before": "src/worldla/__main__.py",
+      "after": "src/worldla/__main__.py",
+      "before_sha256": "fe3e7f03fea12be1fde790f075659f4ad17ee53c5e315d0cc15c5a5a0d5428f6"
+    },
+    {
+      "before": "src/worldla/export.py",
+      "after": "src/worldla/export.py",
+      "before_sha256": "b164a86a31390dc53458b621ad6a6148fa6c11d7cd69dd0856b53ee95c01202f"
+    },
+    {
+      "before": "src/worldla/policy.py",
+      "after": "src/worldla/policy.py",
+      "before_sha256": "ef0cb7a9749866bbacccd236162a4c4a587ad5b63f015d7218027ca9c6db54b7"
+    },
+    {
+      "before": "src/worldla/training.py",
+      "after": "src/worldla/training/runner.py",
+      "before_sha256": "966a0c44567b96ffec9d6d781a0d2857de38725b70adccfcc6a484ebb288e105"
+    },
+    {
+      "before": "src/worldla/integrations/evaluate.py",
+      "after": "src/worldla/integrations/evaluate.py",
+      "before_sha256": "e2622ef857bf3b6f3d8de767ffec3c55a959297a5bcdb36edde3f09302f0d083"
+    },
+    {
+      "before": "src/worldla/integrations/__init__.py",
+      "after": "src/worldla/integrations/__init__.py",
+      "before_sha256": "cd62bea89d8d1608b73b43a466f8cf8bdedc7d95498eb6bb99498678a8282e60"
+    },
+    {
+      "before": "src/worldla/integrations/robotwin.py",
+      "after": "src/worldla/integrations/robotwin.py",
+      "before_sha256": "c7c74df909799cbcc2590f7e787ba4e8983d43a71c494600a29dd2ea8fbb8c5b"
+    },
+    {
+      "before": "src/worldla/integrations/robotwin_runner.py",
+      "after": "src/worldla/integrations/robotwin_runner.py",
+      "before_sha256": "19ea965df22884642b5ab3ab8aef7f7eb2da0177dafb379320090c7fd11d8052"
+    },
+    {
+      "before": "src/worldla/integrations/rendering.py",
+      "after": "src/worldla/integrations/rendering.py",
+      "before_sha256": "8638dcfad9342ea29fa0aff9a7b8d795c345d68f547e50d65c4aab30ddb34043"
+    },
+    {
+      "before": "src/worldla/__init__.py",
+      "after": "src/worldla/__init__.py",
+      "before_sha256": "ac794d51f3c2c5b1eacd6f8d1292333e38d4030bf7f2b2101422e818a4e68ab1"
+    },
+    {
+      "before": "src/worldla/checkpoints.py",
+      "after": "src/worldla/checkpoints.py",
+      "before_sha256": "1a8c778a4a4b8d33d4597f7e5702449f3142333cac4fdeac48fdd80be6acf3a7"
+    },
+    {
+      "before": "src/worldla/model.py",
+      "after": "src/worldla/models/worldla.py",
+      "before_sha256": "553463a613f8953f1d8493a398d9b0f5d35cbf591b61eba7ab012ac19f842e30"
+    },
+    {
+      "before": "src/worldla/runtime.py",
+      "after": "src/worldla/runtime.py",
+      "before_sha256": "cbe2acc51fd7e118824f130858de827236e5d767c9f7b0718bf81f3674d8ce76"
+    },
+    {
+      "before": "src/worldla/data/build_anchors.py",
+      "after": "src/worldla/data/build_anchors.py",
+      "before_sha256": "036604b43a76ceaa80209248669bdd3a5a0abf9aaa768f4c5caff35eeb59d242"
+    },
+    {
+      "before": "src/worldla/data/stage_routes.py",
+      "after": "src/worldla/data/stage_routes.py",
+      "before_sha256": "9b1339d734c97ebf1a106bff566a7948f780cfb4cd568d45f109a1064602586e"
+    },
+    {
+      "before": "src/worldla/data/__init__.py",
+      "after": "src/worldla/data/__init__.py",
+      "before_sha256": "8335ff3f374ccdb5d8852bd88cf19b51f364149f9a2adcaa3d89e04cf6236ea0"
+    },
+    {
+      "before": "src/worldla/data/native.py",
+      "after": "src/worldla/data/native.py",
+      "before_sha256": "52e484e9b92b184b2eff27ec40d264679ac33fb4f36d91b084614cdc03c19bdc"
+    },
+    {
+      "before": "src/worldla/data/build_routes.py",
+      "after": "src/worldla/data/build_routes.py",
+      "before_sha256": "351cc75d4354e59c5bb64371806d1f6817e2feb79165e0deb7244a57d650418e"
+    },
+    {
+      "before": "src/worldla/data/spatial.py",
+      "after": "src/worldla/data/spatial.py",
+      "before_sha256": "f997fed2a6fe0cc30fd25f5f1b0acc02500a3297d4c24c5f1cd4a4c74b524a33"
+    },
+    {
+      "before": "src/worldla/cli.py",
+      "after": "src/worldla/cli.py",
+      "before_sha256": "bb549194b80990cde65c34b2ff39e62cfdd514c1325c9783936d5c15941e4086"
+    },
+    {
+      "before": "src/worldla/config.py",
+      "after": "src/worldla/training/presets.py",
+      "before_sha256": "a8392c231cb32ccf47ea43932d13ea89a51bb53fa3836c20ee7d7c863770954b"
+    },
+    {
+      "before": "src/worldla/replanning.py",
+      "after": "src/worldla/replanning.py",
+      "before_sha256": "416f4d99689a901c61963a8b869e01a864aba1aac71de19a0e9cc3f3ec07a17b"
+    },
+    {
+      "before": "src/worldla/io.py",
+      "after": "src/worldla/io.py",
+      "before_sha256": "db53183804efa4f75466ed63c174fbd5587e61b140e1c859317dcaecc885e898"
+    },
+    {
+      "before": "src/openpi_client/action_chunk_broker.py",
+      "after": "src/worldla/client/chunk_buffer.py",
+      "before_sha256": "e8eb9009a419b1e3fc97f9cc78028e9440f24f802826c03728a272bdc9e21a9b"
+    },
+    {
+      "before": "src/openpi_client/__init__.py",
+      "after": "src/worldla/client/__init__.py",
+      "before_sha256": "91447944015cec709e8aa7655f7e9d64e1e4508e7023a57fe3746911c0fc6fed"
+    },
+    {
+      "before": "src/openpi_client/base_policy.py",
+      "after": "src/worldla/client/interface.py",
+      "before_sha256": "331a37b42978704915cc2bf2040931a1d123e3d4adf6c441a1348a2ba4d843ed"
+    },
+    {
+      "before": "src/openpi_client/websocket_client_policy.py",
+      "after": "src/worldla/client/websocket.py",
+      "before_sha256": "c61481abe83c39811bac1feadbbf6226197063f8b115d0ab9ae7246d1b3acc14"
+    },
+    {
+      "before": "src/openpi_client/image_tools.py",
+      "after": "src/worldla/client/images.py",
+      "before_sha256": "d48b4bd7f44e79fe6db8a8e07c9161144fa250be686e1245014a8b47e6171977"
+    },
+    {
+      "before": "src/openpi_client/msgpack_numpy.py",
+      "after": "src/worldla/client/msgpack_numpy.py",
+      "before_sha256": "b6397ec0ad244e056b2f1cb6a980037a207284368f20b313001e07409fd1a74e"
+    },
+    {
+      "before": "src/openpi_client/runtime/agents/policy_agent.py",
+      "after": "src/worldla/client/runtime/agents/policy_agent.py",
+      "before_sha256": "c4d63952d1954bd4b72a3122223df36794812fea74cf1c7023433b5a90473c1c"
+    },
+    {
+      "before": "src/openpi_client/runtime/runtime.py",
+      "after": "src/worldla/client/runtime/runtime.py",
+      "before_sha256": "5217c91b9a1e921cf61740dd7314ee290885e5181b9cec63456913f7460328ba"
+    },
+    {
+      "before": "src/openpi_client/runtime/agent.py",
+      "after": "src/worldla/client/runtime/agent.py",
+      "before_sha256": "b559885afd9645a91b9b6ee12a28513295474f987d11b16610fc0479dbe6de5b"
+    },
+    {
+      "before": "src/openpi_client/runtime/subscriber.py",
+      "after": "src/worldla/client/runtime/subscriber.py",
+      "before_sha256": "d269a2af8ec4056beb310e5c3c97d4468af01549c7ef80dd905652d8ac64f85b"
+    },
+    {
+      "before": "src/openpi_client/runtime/environment.py",
+      "after": "src/worldla/client/runtime/environment.py",
+      "before_sha256": "1c12e5054b3401dec5f1f8b71eef0f625cb60e2b50784dcf19afa32c77107a7e"
+    }
+  ]
+}

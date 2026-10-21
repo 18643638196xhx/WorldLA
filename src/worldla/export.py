@@ -8,7 +8,9 @@ from pathlib import Path
 import shutil
 
 import numpy as np
-from worldla.checkpoints import assemble_original, fold_lora, validate_tree
+from worldla.checkpoints import assemble_original
+from worldla.checkpoints import fold_lora
+from worldla.checkpoints import validate_tree
 from worldla.io import write_json
 
 
@@ -42,9 +44,10 @@ def main():
     import jax
     import jax.numpy as jnp
     import orbax.checkpoint as ocp
-    from openpi.models import gemma, model as model_api
-    from openpi.models.pi0_config import Pi0Config
-    from worldla.model import StageRelationRouterPi
+    from worldla.models import language as gemma
+    from worldla.models import interfaces as model_api
+    from worldla.models.configuration import WorldLAConfig
+    from worldla.models.worldla import WorldLAModel
     source, target = args.model_dir.resolve(), args.output_dir.resolve()
     meta = json.loads((source/'experiment.json').read_text())
     if not meta.get('completed') or meta['stage'] != 'action':
@@ -61,12 +64,12 @@ def main():
     cfg = meta.get('base_model_config')
     if cfg is None and meta['config_name'] not in {'multi_task_4','worldla_pi05'}:
         raise ValueError('Legacy run has no explicit model configuration')
-    model_cfg = Pi0Config(**cfg) if cfg else Pi0Config(
+    model_cfg = WorldLAConfig(**cfg) if cfg else WorldLAConfig(
         pi05=True, paligemma_variant='gemma_2b_lora', action_expert_variant='gemma_300m_lora')
     kwargs = {key: meta[key] for key in ('prefix_dim','suffix_dim','num_route_tokens','num_stages',
               'router_hidden_dim','adapter_dim','router_active','message_enabled','position_only')}
     def expected(config):
-        model = nnx.eval_shape(lambda: StageRelationRouterPi(config.create(jax.random.key(0)),
+        model = nnx.eval_shape(lambda: WorldLAModel(config.create(jax.random.key(0)),
                                 **kwargs, rngs=nnx.Rngs(0)))
         return traverse_util.flatten_dict(nnx.state(model).to_pure_dict())
     print('Hashing original checkpoints', flush=True)
@@ -110,7 +113,7 @@ def main():
     shutil.copyfile(args.tokenizer,staging/'assets/paligemma_tokenizer.model')
     write_json(staging/'config.json', {
         'schema': 'worldla_full_folded_v1' if merged else 'worldla_full_original_v1',
-        'lora_merged': merged, 'architecture': 'StageRelationRouterPi',
+        'lora_merged': merged, 'architecture': 'WorldLAModel',
         'base_model_config': dataclasses.asdict(model_cfg),'router_config':kwargs,'asset_id':asset,
         'source_step':meta['steps'],'source_lr_schedule':meta['lr_schedule'],
         'requires_base_checkpoint':False,'requires_fastwam':False,

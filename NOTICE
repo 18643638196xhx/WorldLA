@@ -2,9 +2,12 @@ WorldLA
 Copyright 2026 WorldLA contributors
 
 WorldLA's original code is licensed under the Apache License, Version 2.0.
-The src/openpi and src/openpi_client directories contain third-party OpenPI
-code, including the locally tested runtime/model implementation. Their
-Apache-2.0 license is reproduced in licenses/OpenPI-APACHE-2.0.txt.
+Code derived from OpenPI is organized within the worldla Python namespace,
+including its model, data, training, utility, policy and client modules.
+Renaming these modules/classes does not make the upstream code wholly original.
+The Apache-2.0 license is reproduced in licenses/OpenPI-APACHE-2.0.txt;
+original copyright headers are retained in derived files. Original snapshot
+hashes and the file/class migration map are retained in licenses/provenance/.
 
 This project does not grant rights to upstream model weights, tokenizers,
 robot demonstrations, simulator assets, or separately obtained Fast-WAM code.

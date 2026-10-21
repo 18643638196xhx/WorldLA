@@ -1,0 +1,412 @@
+{
+  "layout": {
+    "base/PaliGemma/img/Transformer/encoder_norm/bias": [
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoder_norm/scale": [
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/LayerNorm_0/bias": [
+      27,
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/LayerNorm_0/scale": [
+      27,
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/LayerNorm_1/bias": [
+      27,
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/LayerNorm_1/scale": [
+      27,
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MlpBlock_0/Dense_0/bias": [
+      27,
+      4304
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MlpBlock_0/Dense_0/kernel": [
+      27,
+      1152,
+      4304
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MlpBlock_0/Dense_1/bias": [
+      27,
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MlpBlock_0/Dense_1/kernel": [
+      27,
+      4304,
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MultiHeadDotProductAttention_0/key/bias": [
+      27,
+      16,
+      72
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MultiHeadDotProductAttention_0/key/kernel": [
+      27,
+      1152,
+      16,
+      72
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MultiHeadDotProductAttention_0/out/bias": [
+      27,
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MultiHeadDotProductAttention_0/out/kernel": [
+      27,
+      16,
+      72,
+      1152
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MultiHeadDotProductAttention_0/query/bias": [
+      27,
+      16,
+      72
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MultiHeadDotProductAttention_0/query/kernel": [
+      27,
+      1152,
+      16,
+      72
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MultiHeadDotProductAttention_0/value/bias": [
+      27,
+      16,
+      72
+    ],
+    "base/PaliGemma/img/Transformer/encoderblock/MultiHeadDotProductAttention_0/value/kernel": [
+      27,
+      1152,
+      16,
+      72
+    ],
+    "base/PaliGemma/img/embedding/bias": [
+      1152
+    ],
+    "base/PaliGemma/img/embedding/kernel": [
+      14,
+      14,
+      3,
+      1152
+    ],
+    "base/PaliGemma/img/head/bias": [
+      2048
+    ],
+    "base/PaliGemma/img/head/kernel": [
+      1152,
+      2048
+    ],
+    "base/PaliGemma/img/pos_embedding": [
+      1,
+      256,
+      1152
+    ],
+    "base/PaliGemma/llm/embedder/input_embedding": [
+      257152,
+      2048
+    ],
+    "base/PaliGemma/llm/final_norm/scale": [
+      2048
+    ],
+    "base/PaliGemma/llm/final_norm_1/Dense_0/bias": [
+      3072
+    ],
+    "base/PaliGemma/llm/final_norm_1/Dense_0/kernel": [
+      1024,
+      3072
+    ],
+    "base/PaliGemma/llm/layers/attn/attn_vec_einsum/lora_a": [
+      18,
+      8,
+      256,
+      16
+    ],
+    "base/PaliGemma/llm/layers/attn/attn_vec_einsum/lora_b": [
+      18,
+      8,
+      16,
+      2048
+    ],
+    "base/PaliGemma/llm/layers/attn/attn_vec_einsum/w": [
+      18,
+      8,
+      256,
+      2048
+    ],
+    "base/PaliGemma/llm/layers/attn/attn_vec_einsum_1/lora_a": [
+      18,
+      8,
+      256,
+      32
+    ],
+    "base/PaliGemma/llm/layers/attn/attn_vec_einsum_1/lora_b": [
+      18,
+      8,
+      32,
+      1024
+    ],
+    "base/PaliGemma/llm/layers/attn/attn_vec_einsum_1/w": [
+      18,
+      8,
+      256,
+      1024
+    ],
+    "base/PaliGemma/llm/layers/attn/kv_einsum/lora_a": [
+      18,
+      2,
+      1,
+      2048,
+      16
+    ],
+    "base/PaliGemma/llm/layers/attn/kv_einsum/lora_b": [
+      18,
+      2,
+      1,
+      16,
+      256
+    ],
+    "base/PaliGemma/llm/layers/attn/kv_einsum/w": [
+      18,
+      2,
+      1,
+      2048,
+      256
+    ],
+    "base/PaliGemma/llm/layers/attn/kv_einsum_1/lora_a": [
+      18,
+      2,
+      1,
+      1024,
+      32
+    ],
+    "base/PaliGemma/llm/layers/attn/kv_einsum_1/lora_b": [
+      18,
+      2,
+      1,
+      32,
+      256
+    ],
+    "base/PaliGemma/llm/layers/attn/kv_einsum_1/w": [
+      18,
+      2,
+      1,
+      1024,
+      256
+    ],
+    "base/PaliGemma/llm/layers/attn/q_einsum/lora_a": [
+      18,
+      8,
+      2048,
+      16
+    ],
+    "base/PaliGemma/llm/layers/attn/q_einsum/lora_b": [
+      18,
+      8,
+      16,
+      256
+    ],
+    "base/PaliGemma/llm/layers/attn/q_einsum/w": [
+      18,
+      8,
+      2048,
+      256
+    ],
+    "base/PaliGemma/llm/layers/attn/q_einsum_1/lora_a": [
+      18,
+      8,
+      1024,
+      32
+    ],
+    "base/PaliGemma/llm/layers/attn/q_einsum_1/lora_b": [
+      18,
+      8,
+      32,
+      256
+    ],
+    "base/PaliGemma/llm/layers/attn/q_einsum_1/w": [
+      18,
+      8,
+      1024,
+      256
+    ],
+    "base/PaliGemma/llm/layers/mlp/gating_einsum": [
+      18,
+      2,
+      2048,
+      16384
+    ],
+    "base/PaliGemma/llm/layers/mlp/gating_einsum_lora_a": [
+      18,
+      2,
+      2048,
+      16
+    ],
+    "base/PaliGemma/llm/layers/mlp/gating_einsum_lora_b": [
+      18,
+      2,
+      16,
+      16384
+    ],
+    "base/PaliGemma/llm/layers/mlp/linear": [
+      18,
+      16384,
+      2048
+    ],
+    "base/PaliGemma/llm/layers/mlp/linear_lora_a": [
+      18,
+      16384,
+      16
+    ],
+    "base/PaliGemma/llm/layers/mlp/linear_lora_b": [
+      18,
+      16,
+      2048
+    ],
+    "base/PaliGemma/llm/layers/mlp_1/gating_einsum": [
+      18,
+      2,
+      1024,
+      4096
+    ],
+    "base/PaliGemma/llm/layers/mlp_1/gating_einsum_lora_a": [
+      18,
+      2,
+      1024,
+      32
+    ],
+    "base/PaliGemma/llm/layers/mlp_1/gating_einsum_lora_b": [
+      18,
+      2,
+      32,
+      4096
+    ],
+    "base/PaliGemma/llm/layers/mlp_1/linear": [
+      18,
+      4096,
+      1024
+    ],
+    "base/PaliGemma/llm/layers/mlp_1/linear_lora_a": [
+      18,
+      4096,
+      32
+    ],
+    "base/PaliGemma/llm/layers/mlp_1/linear_lora_b": [
+      18,
+      32,
+      1024
+    ],
+    "base/PaliGemma/llm/layers/pre_attention_norm/scale": [
+      18,
+      2048
+    ],
+    "base/PaliGemma/llm/layers/pre_attention_norm_1/Dense_0/bias": [
+      18,
+      3072
+    ],
+    "base/PaliGemma/llm/layers/pre_attention_norm_1/Dense_0/kernel": [
+      18,
+      1024,
+      3072
+    ],
+    "base/PaliGemma/llm/layers/pre_ffw_norm/scale": [
+      18,
+      2048
+    ],
+    "base/PaliGemma/llm/layers/pre_ffw_norm_1/Dense_0/bias": [
+      18,
+      3072
+    ],
+    "base/PaliGemma/llm/layers/pre_ffw_norm_1/Dense_0/kernel": [
+      18,
+      1024,
+      3072
+    ],
+    "base/action_in_proj/bias": [
+      1024
+    ],
+    "base/action_in_proj/kernel": [
+      32,
+      1024
+    ],
+    "base/action_out_proj/bias": [
+      32
+    ],
+    "base/action_out_proj/kernel": [
+      1024,
+      32
+    ],
+    "base/time_mlp_in/bias": [
+      1024
+    ],
+    "base/time_mlp_in/kernel": [
+      1024,
+      1024
+    ],
+    "base/time_mlp_out/bias": [
+      1024
+    ],
+    "base/time_mlp_out/kernel": [
+      1024,
+      1024
+    ],
+    "stage_message_adapter/down/bias": null,
+    "stage_message_adapter/down/kernel": [
+      2048,
+      128
+    ],
+    "stage_message_adapter/gate_logit": [
+      4
+    ],
+    "stage_message_adapter/norm/bias": [
+      2048
+    ],
+    "stage_message_adapter/norm/scale": [
+      2048
+    ],
+    "stage_message_adapter/up/bias": null,
+    "stage_message_adapter/up/kernel": [
+      128,
+      1024
+    ],
+    "stage_relation_router/context_in/bias": [
+      256
+    ],
+    "stage_relation_router/context_in/kernel": [
+      4096,
+      256
+    ],
+    "stage_relation_router/log_temperature": [],
+    "stage_relation_router/query_out/bias": [
+      256
+    ],
+    "stage_relation_router/query_out/kernel": [
+      256,
+      256
+    ],
+    "stage_relation_router/source_norm/bias": [
+      2048
+    ],
+    "stage_relation_router/source_norm/scale": [
+      2048
+    ],
+    "stage_relation_router/stage_embedding": [
+      4,
+      256
+    ],
+    "stage_relation_router/stage_position_logits": [
+      4,
+      768
+    ],
+    "stage_relation_router/visual_key/bias": [
+      256
+    ],
+    "stage_relation_router/visual_key/kernel": [
+      2048,
+      256
+    ]
+  },
+  "source": "pre-namespace WorldLA 0.1.0"
+}
