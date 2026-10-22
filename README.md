@@ -3,7 +3,8 @@
 Transfer action–visual relations from Fast-WAM to an efficient pi0.5 policy,
 with time-aligned old-tail/new-head replanning.
 
-[中文完整流程](README_zh.md) · [Hugging Face release](https://huggingface.co/xhx0327/WorldLA-100k-decay-full) ·
+[Paper (PDF)](docs/WorldLA.pdf) · [中文完整流程](README_zh.md) ·
+[Hugging Face release](https://huggingface.co/xhx0327/WorldLA-100k-decay-full) ·
 [Training details](docs/TRAINING.md) · [Evaluation details](docs/EVALUATION.md) ·
 [Validation](docs/VALIDATION.md)
 

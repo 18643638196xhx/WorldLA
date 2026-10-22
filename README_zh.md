@@ -1,6 +1,7 @@
 # WorldLA：测试与训练完整流程
 
-[English](README.md) · [Hugging Face 权重与数据](https://huggingface.co/xhx0327/WorldLA-100k-decay-full) ·
+[论文 PDF](docs/WorldLA.pdf) · [English](README.md) ·
+[Hugging Face 权重与数据](https://huggingface.co/xhx0327/WorldLA-100k-decay-full) ·
 [训练细节](docs/TRAINING.md) · [评测接口](docs/EVALUATION.md) · [验证记录](docs/VALIDATION.md)
 
 WorldLA 将 Fast-WAM 的动作—视觉关系迁移到 π0.5：路由器学习不同动作阶段
