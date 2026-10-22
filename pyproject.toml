@@ -27,6 +27,7 @@ train = [
   "lerobot @ git+https://github.com/huggingface/lerobot.git@a445d9c9da6bea99a8972daa4fe1fdd053d711d2"
 ]
 dev = ["pytest>=8", "build>=1", "ruff>=0.8"]
+xpolicylab = ["worldla[runtime]", "websockets==14.1", "msgpack==1.1.0", "msgpack-numpy==0.4.8", "h5py==3.12.1"]
 
 [project.scripts]
 worldla = "worldla.cli:main"

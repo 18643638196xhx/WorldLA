@@ -1,0 +1,5 @@
+-r requirements-runtime.txt
+websockets==14.1
+msgpack==1.1.0
+msgpack-numpy==0.4.8
+h5py==3.12.1

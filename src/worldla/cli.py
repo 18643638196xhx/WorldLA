@@ -12,6 +12,8 @@ COMMANDS = {
     'build-anchors': 'worldla.data.build_anchors',
     'export': 'worldla.export',
     'eval-robotwin': 'worldla.integrations.evaluate',
+    'serve-xpolicylab': 'worldla.integrations.xpolicylab_server',
+    'eval-xpolicylab': 'worldla.integrations.xpolicylab_eval',
 }
 
 
